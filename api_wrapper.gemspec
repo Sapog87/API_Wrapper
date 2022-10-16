@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/API_Wrapper/version"
+require_relative "lib/api_wrapper/ib/API_Wrapper/version"
 
 Gem::Specification.new do |spec|
   spec.name = "API_Wrapper"
