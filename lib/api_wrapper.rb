@@ -138,44 +138,4 @@ module APIWrapper
       JSON.parse http
     end
   end
-
-  # binance = APIWrapper::BinanceRawData.new
-  #
-  # puts binance.time
-  #
-  # puts binance.avg_price "BTCUSDT"
-  #
-  # puts binance.exchange_info %w[BTCUSDT BNBBTC ETHBTC]
-  # puts binance.exchange_info ["BTCUSDT"]
-  # puts binance.exchange_info "BTCUSDT"
-  # puts binance.exchange_info
-  #
-  # puts binance.depth "BTCUSDT"
-  # puts binance.depth "BTCUSDT", 10
-  #
-  # puts binance.trades "BTCUSDT"
-  # puts binance.trades "BTCUSDT", 10
-  #
-  # puts binance.agg_trades "BTCUSDT"
-  # puts binance.agg_trades "BTCUSDT", 0
-  # puts binance.agg_trades "BTCUSDT", 0, 10
-  #
-  # puts binance.ticker_24h %w[BTCUSDT BNBBTC ETHBTC]
-  # puts binance.ticker_24h %w[BTCUSDT BNBBTC ETHBTC], "MINI"
-  # puts binance.ticker_24h ["BTCUSDT"]
-  # puts binance.ticker_24h ["BTCUSDT"], "MINI"
-  # puts binance.ticker_24h "BTCUSDT"
-  # puts binance.ticker_24h "BTCUSDT", "MINI"
-  # puts binance.ticker_24h "", "MINI"
-  # puts binance.ticker_24h
-  #
-  # puts binance.ticker_price %w[BTCUSDT BNBBTC ETHBTC]
-  # puts binance.ticker_price ["BTCUSDT"]
-  # puts binance.ticker_price "BTCUSDT"
-  # puts binance.ticker_price
-  #
-  # puts binance.book_ticker %w[BTCUSDT BNBBTC ETHBTC]
-  # puts binance.book_ticker ["BTCUSDT"]
-  # puts binance.book_ticker "BTCUSDT"
-  # puts binance.book_ticker
 end
