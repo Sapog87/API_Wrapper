@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "api_wrapper/version.rb"
+require_relative "api_wrapper/version"
 
 require "net/http"
 require "json"
@@ -13,23 +13,23 @@ module APIWrapper
   class BinanceRawData
     # aaa
     def time
-      path = PATH + "time"
+      path = "#{PATH}time"
       get_and_parse path
     end
 
     # aaa
     def avg_price(symbol)
-      path = PATH + "avgPrice?symbol=" + symbol
+      path = "#{PATH}avgPrice?symbol=#{symbol}"
       get_and_parse path
     end
 
     # aaa
     def exchange_info(symbols = "")
       if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
-        throw ArgumentError.new "symbols can't be " + symbols.to_s
+        throw ArgumentError.new "symbols can't be #{symbols}"
       end
 
-      path = PATH + "exchangeInfo"
+      path = "#{PATH}exchangeInfo"
       path += "?symbol=" if symbols.is_a?(String) && !symbols.empty?
       path += "?symbols=" if symbols.is_a? Array
 
@@ -41,10 +41,10 @@ module APIWrapper
 
     # aaa
     def depth(symbol, limit = 500)
-      throw ArgumentError.new "symbol can't be " + symbol.to_s if !symbol.is_a?(String) && symbol.empty?
-      throw ArgumentError.new "limit can't be " + limit.to_s if limit > 5000 || limit < 1
+      throw ArgumentError.new "symbol can't be #{symbol}" if !symbol.is_a?(String) && symbol.empty?
+      throw ArgumentError.new "limit can't be #{limit}" if limit > 5000 || limit < 1
 
-      path = PATH + "depth?symbol=" + symbol + "&limit=" + limit.to_s
+      path = "#{PATH}depth?symbol=#{symbol}&limit=#{limit}"
 
       get_and_parse path
     end
@@ -52,9 +52,9 @@ module APIWrapper
     # aaa
     def trades(symbol, limit = 500)
       throw ArgumentError.new "invalid type(s)" if !symbol.is_a?(String) || !limit.is_a?(Integer)
-      throw ArgumentError.new "limit can't be " + limit.to_s if limit > 1000 || limit < 1
+      throw ArgumentError.new "limit can't be #{limit}" if limit > 1000 || limit < 1
 
-      path = PATH + "trades?symbol=" + symbol + "&limit=" + limit.to_s
+      path = "#{PATH}trades?symbol=#{symbol}&limit=#{limit}"
 
       get_and_parse path
     end
@@ -62,10 +62,10 @@ module APIWrapper
     # aaa
     def agg_trades(symbol, from_id = 0, limit = 500)
       throw ArgumentError.new "invalid type(s)" if !symbol.is_a?(String) || !limit.is_a?(Integer) || !from_id.is_a?(Integer)
-      throw ArgumentError.new "limit can't be " + limit.to_s if limit > 1000 || limit < 1
+      throw ArgumentError.new "limit can't be #{limit}" if limit > 1000 || limit < 1
 
-      path = PATH + "aggTrades?symbol=" + symbol + "&limit=" + limit.to_s
-      path += "&fromId=" + from_id.to_s if from_id.positive?
+      path = "#{PATH}aggTrades?symbol=#{symbol}&limit=#{limit}"
+      path += "&fromId=#{from_id}" if from_id.positive?
 
       get_and_parse path
     end
@@ -73,27 +73,27 @@ module APIWrapper
     # aaa
     def ticker_24h(symbols = "", type = "FULL")
       if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
-        throw ArgumentError.new "symbols can't be " + symbols.to_s
+        throw ArgumentError.new "symbols can't be #{symbols}"
       end
-      throw ArgumentError.new "type can't be " + type.to_s if type != "FULL" && type != "MINI"
+      throw ArgumentError.new "type can't be #{type}" if type != "FULL" && type != "MINI"
 
       separator = "?"
 
-      path = PATH + "ticker/24hr"
+      path = "#{PATH}ticker/24hr"
 
       if symbols.is_a?(String) && !symbols.empty?
-        path += separator + "symbol="
+        path += "#{separator}symbol="
         separator = "&"
       end
       if symbols.is_a? Array
-        path += separator + "symbols="
+        path += "#{separator}symbols="
         separator = "&"
       end
 
       params = symbols.to_s.delete(" ")
       path += params
 
-      path += separator + "type=MINI" if type == "MINI"
+      path += "#{separator}type=MINI" if type == "MINI"
 
       get_and_parse path
     end
@@ -101,10 +101,10 @@ module APIWrapper
     # aaa
     def ticker_price(symbols = "")
       if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
-        throw ArgumentError.new "symbols can't be " + symbols.to_s
+        throw ArgumentError.new "symbols can't be #{symbols}"
       end
 
-      path = PATH + "ticker/price"
+      path = "#{PATH}ticker/price"
       path += "?symbol=" if symbols.is_a?(String) && !symbols.empty?
       path += "?symbols=" if symbols.is_a? Array
 
@@ -117,10 +117,10 @@ module APIWrapper
     # aaa
     def book_ticker(symbols = "")
       if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
-        throw ArgumentError.new "symbols can't be " + symbols.to_s
+        throw ArgumentError.new "symbols can't be #{symbols}"
       end
 
-      path = PATH + "ticker/bookTicker"
+      path = "#{PATH}ticker/bookTicker"
       path += "?symbol=" if symbols.is_a?(String) && !symbols.empty?
       path += "?symbols=" if symbols.is_a? Array
 
