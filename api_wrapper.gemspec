@@ -5,20 +5,20 @@ require_relative "lib/api_wrapper/version"
 Gem::Specification.new do |spec|
   spec.name = "API_Wrapper"
   spec.version = APIWrapper::VERSION
-  spec.authors = ["TODO: Write your name"]
-  spec.email = ["TODO: Write your email address"]
+  spec.authors = ["Sapog87"]
+  spec.email = ["molotov9500@gmail.com"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = "Not good gem"
+  spec.description = "Binance API Wrapper. Only get requests with out key."
+  spec.homepage = "https://github.com/Sapog87/API_Wrapper"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/Sapog87/API_Wrapper"
+  spec.metadata["changelog_uri"] = "https://github.com/Sapog87/API_Wrapper/blob/c3e7cd21ed308acd2eed7d48b1e6d479a4251d77/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
