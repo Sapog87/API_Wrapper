@@ -23,3 +23,9 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Max: 15
+
+Metrics/ClassLength:
+  Max: 99999
+
+Layout/LineLength:
+  Max: 99999

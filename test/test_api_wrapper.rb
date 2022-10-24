@@ -74,16 +74,16 @@ class TestAPIWrapper < Minitest::Test
 
   def test_kline_data
     binance = APIWrapper::BinanceRawData.new
-    assert_equal binance.kline_data('-A')["code"], -1121
+    assert_equal binance.kline_data("-A")["code"], -1121
   end
 
   def uiklines_data
     binance = APIWrapper::BinanceRawData.new
-    assert_equal binance.uiklines_data('-A')["code"], -1121
+    assert_equal binance.uiklines_data("-A")["code"], -1121
   end
 
   def price_change_stats
     binance = APIWrapper::BinanceRawData.new
-    assert_equal binance.price_change_stats('-A')["code"], -1121
+    assert_equal binance.price_change_stats("-A")["code"], -1121
   end
 end
