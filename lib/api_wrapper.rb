@@ -4,6 +4,7 @@ require_relative "api_wrapper/version"
 
 require "net/http"
 require "json"
+require "csv"
 
 # aaa
 module APIWrapper
@@ -157,6 +158,46 @@ module APIWrapper
       get_and_parse path
     end
 
+    # write average prices to a csv file
+    # all ~ 2115
+    def write_avg_prices_to_csv(count = 10)
+      throw ArgumentError.new "count can't be #{count}" if(count <= 0)
+
+      CSV.open("avg_prices.csv", "w") do |csv|
+        csv << ["Pair", "Price", "Time"]
+      end
+
+      pairs = exchange_info()['symbols'].take(count)
+
+      CSV.open("avg_prices.csv", "ab") do |csv|
+        for x in pairs
+          pair = x['symbol']
+          csv << [pair, avg_price(pair)['price'], Time.now]
+        end
+      end
+    end
+
+    # write average prices to a csv file of certain pairs
+    def write_certain_avg_prices_to_csv(symbols = "")
+      if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
+        throw ArgumentError.new "symbols can't be #{symbols}"
+      end
+
+      filename = "avg_prices_of " + symbols.join(' ') + ".csv"
+      CSV.open(filename, "w") do |csv|
+        csv << ["Pair", "Price", "Time"]
+      end
+
+      pairs = exchange_info(symbols)['symbols']
+
+      CSV.open(filename, "ab") do |csv|
+        for x in pairs
+          pair = x['symbol']
+          csv << [pair, avg_price(pair)['price'], Time.now]
+        end
+      end
+    end
+
     private
 
     def get_and_parse(path)
@@ -180,9 +221,6 @@ module APIWrapper
 end
 
 t = APIWrapper::BinanceRawData.new
-res = t.exchange_info('BTCUSDT')
-for x in res['symbols']
-  p x['symbol']
-end
-
-p t.price_change_stats('-A')
+t.write_avg_prices_to_csv(100)
+p t.exchange_info(['BTCUSDT', 'ETHBTC'])
+t.write_certain_avg_prices_to_csv(['BTCUSDT', 'ETHBTC', 'ETHRUB'])
