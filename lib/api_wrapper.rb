@@ -130,6 +130,33 @@ module APIWrapper
       get_and_parse path
     end
 
+    # get recent Kline data
+    def kline_data(symbol, interval = "1s")
+      throw ArgumentError.new "symbol can't be #{symbol}" if !symbol.is_a?(String) && symbol.empty?
+      throw ArgumentError.new "interval can't be #{interval}" if !check_interval(interval)
+      path = "#{PATH}klines?symbol=" + symbol + "&interval=" + interval
+
+      get_and_parse path
+    end
+
+    # get recent UIKlines data
+    def uiklines_data(symbol, interval = "1s")
+      throw ArgumentError.new "symbol can't be #{symbol}" if !symbol.is_a?(String) && symbol.empty?
+      throw ArgumentError.new "interval can't be #{interval}" if !check_interval(interval)
+      path = "#{PATH}uiKlines?symbol=" + symbol + "&interval=" + interval
+
+      get_and_parse path
+    end
+
+    # get rolling window price change statistics
+    def price_change_stats(symbols = "", windowSize = "1d", type = "full") 
+      throw ArgumentError.new "windowSize can't be #{windowSize}" if !check_windowsize(windowSize)
+      throw ArgumentError.new "symbols can't be #{symbols}" if !symbols.is_a?(String) || symbols.empty?
+      path = "#{PATH}ticker?symbol=" + symbols + "&windowSize=" + windowSize + "&type=" + type
+
+      get_and_parse path
+    end
+
     private
 
     def get_and_parse(path)
@@ -137,5 +164,20 @@ module APIWrapper
       http = Net::HTTP.get uri
       JSON.parse http
     end
-  end
+
+    def check_interval(interval)
+      interval == '1s' || '1m' || '3m' || '5m' || '15m' || '30m' || '1h' || '2h' || '4h' || '6h' || '8h' || '12h' || '1d' || '3d' || '1w' || '1M'
+    end
+
+    def check_windowsize(windowSize)
+      char = windowSize[-1]
+      nums = windowSize[0, windowSize.length - 1].to_i
+      
+      (char == 'd' && nums >= 1 && nums <= 7) || (char == 'h' && nums >= 1 && nums <= 23) || (char == 'm' && nums >= 1 && nums <= 59)
+    end
+
+  end  
 end
+
+t = APIWrapper::BinanceRawData.new
+p t.price_change_stats('BTCUSDT', '8d')
