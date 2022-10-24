@@ -180,4 +180,9 @@ module APIWrapper
 end
 
 t = APIWrapper::BinanceRawData.new
-p t.price_change_stats('BTCUSDT', '8d')
+res = t.exchange_info('BTCUSDT')
+for x in res['symbols']
+  p x['symbol']
+end
+
+p t.price_change_stats('-A')
