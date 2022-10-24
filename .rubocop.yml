@@ -29,3 +29,6 @@ Metrics/ClassLength:
 
 Layout/LineLength:
   Max: 99999
+
+Lint/ScriptPermission:
+  Enabled: false
