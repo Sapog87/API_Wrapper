@@ -6,25 +6,25 @@ require "net/http"
 require "json"
 require "csv"
 
-# aaa
+# Wrap Binance API
 module APIWrapper
   PATH = "https://api.binance.com/api/v3/"
 
-  # aaa
+  # Class to get raw data from Binance API
   class BinanceRawData
-    # aaa
+    # Test connectivity to the Rest API and get the current server time
     def time
       path = "#{PATH}time"
       get_and_parse path
     end
 
-    # aaa
+    # Current average price for a symbol
     def avg_price(symbol)
       path = "#{PATH}avgPrice?symbol=#{symbol}"
       get_and_parse path
     end
 
-    # aaa
+    # Current exchange trading rules and symbol information
     def exchange_info(symbols = "")
       throw ArgumentError.new "symbols can't be #{symbols}" if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
 
@@ -48,7 +48,7 @@ module APIWrapper
       get_and_parse path
     end
 
-    # aaa
+    # Get recent trades
     def trades(symbol, limit = 500)
       throw ArgumentError.new "invalid type(s)" if !symbol.is_a?(String) || !limit.is_a?(Integer)
       throw ArgumentError.new "limit can't be #{limit}" if limit > 1000 || limit < 1
@@ -58,7 +58,7 @@ module APIWrapper
       get_and_parse path
     end
 
-    # aaa
+    # Get compressed, aggregate trades
     def agg_trades(symbol, from_id = 0, limit = 500)
       throw ArgumentError.new "invalid type(s)" if !symbol.is_a?(String) || !limit.is_a?(Integer) || !from_id.is_a?(Integer)
       throw ArgumentError.new "limit can't be #{limit}" if limit > 1000 || limit < 1
@@ -69,7 +69,7 @@ module APIWrapper
       get_and_parse path
     end
 
-    # aaa
+    # 24 hour rolling window price change statistics
     def ticker_24h(symbols = "", type = "FULL")
       throw ArgumentError.new "symbols can't be #{symbols}" if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
       throw ArgumentError.new "type can't be #{type}" if type != "FULL" && type != "MINI"
@@ -95,7 +95,7 @@ module APIWrapper
       get_and_parse path
     end
 
-    # aaa
+    # Latest price for a symbol or symbols
     def ticker_price(symbols = "")
       throw ArgumentError.new "symbols can't be #{symbols}" if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
 
@@ -109,7 +109,7 @@ module APIWrapper
       get_and_parse path
     end
 
-    # aaa
+    # Best price/qty on the order book for a symbol or symbols
     def book_ticker(symbols = "")
       throw ArgumentError.new "symbols can't be #{symbols}" if !symbols.is_a?(Array) && !symbols.is_a?(String) || symbols.is_a?(Array) && symbols.empty?
 
@@ -208,8 +208,3 @@ module APIWrapper
     end
   end
 end
-
-t = APIWrapper::BinanceRawData.new
-t.write_avg_prices_to_csv(100)
-p t.exchange_info(%w[BTCUSDT ETHBTC])
-t.write_certain_avg_prices_to_csv(%w[BTCUSDT ETHBTC ETHRUB])

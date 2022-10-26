@@ -1,4 +1,7 @@
-module APIWrapper
+module APIWrapper.write_avg_prices_to_csv(100)
+p t.exchange_info(%w[BTCUSDT ETHBTC])
+t.write_certain_avg_prices_to_csv(%w[BTCUSDT ETHBTC ETHRUB])
+
   VERSION: String
   # See the writing guide of rbs: https://github.com/ruby/rbs#guides
 end
