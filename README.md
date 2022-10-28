@@ -1,6 +1,6 @@
 # APIWrapper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/API_Wrapper`. To experiment with that code, run `bin/console` for an interactive prompt.
+Gem that wraps Binance API
 
 ## Installation
 
@@ -23,6 +23,46 @@ Or install it yourself as:
 binance = APIWrapper::BinanceRawData.new
 
 time = binance.time
+
+    # Current average price for a symbol
+    def avg_price(symbol)
+
+    # Current exchange trading rules and symbol information
+    def exchange_info(symbols = "")
+
+    # Get depth
+    def depth(symbol, limit = 500)
+
+    # Get recent trades
+    def trades(symbol, limit = 500)
+
+    # Get compressed, aggregate trades
+    def agg_trades(symbol, from_id = 0, limit = 500)
+
+    # 24 hour rolling window price change statistics
+    def ticker_24h(symbols = "", type = "FULL")
+
+    # Latest price for a symbol or symbols
+    def ticker_price(symbols = "")
+
+    # Best price/qty on the order book for a symbol or symbols
+    def book_ticker(symbols = "")
+
+    # get recent Kline data
+    def kline_data(symbol, interval = "1s")
+
+    # get recent UIKlines data
+    def uiklines_data(symbol, interval = "1s")
+
+    # get rolling window price change statistics
+    def price_change_stats(symbols = "", windowsize = "1d", type = "full")
+
+    # write average prices to a csv file
+    # all ~ 2115
+    def write_avg_prices_to_csv(count = 10)
+
+    # write average prices to a csv file of certain pairs
+    def write_certain_avg_prices_to_csv(symbols = "")
 
 ## Development
 
