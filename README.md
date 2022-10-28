@@ -22,7 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+binance = APIWrapper::BinanceRawData.new
+time = binance.time
 
 ## Development
 
