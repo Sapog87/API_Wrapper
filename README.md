@@ -2,6 +2,8 @@
 
 Gem that wraps Binance API
 
+https://binance-docs.github.io/apidocs/#market-data-endpoints
+
 ## Installation
 
 Add this line to your application's Gemfile:
