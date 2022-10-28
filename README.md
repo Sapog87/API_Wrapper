@@ -28,41 +28,41 @@ time = binance.time
     def avg_price(symbol)
 
     # Current exchange trading rules and symbol information
-    def exchange_info(symbols = "")
+    def exchange_info(symbols)
 
     # Get depth
-    def depth(symbol, limit = 500)
+    def depth(symbol, limit)
 
     # Get recent trades
-    def trades(symbol, limit = 500)
+    def trades(symbol, limit)
 
     # Get compressed, aggregate trades
-    def agg_trades(symbol, from_id = 0, limit = 500)
+    def agg_trades(symbol, from_id, limit)
 
     # 24 hour rolling window price change statistics
-    def ticker_24h(symbols = "", type = "FULL")
+    def ticker_24h(symbols, type)
 
     # Latest price for a symbol or symbols
-    def ticker_price(symbols = "")
+    def ticker_price(symbols)
 
     # Best price/qty on the order book for a symbol or symbols
-    def book_ticker(symbols = "")
+    def book_ticker(symbols)
 
     # get recent Kline data
-    def kline_data(symbol, interval = "1s")
+    def kline_data(symbol, interval)
 
     # get recent UIKlines data
-    def uiklines_data(symbol, interval = "1s")
+    def uiklines_data(symbol, interval)
 
     # get rolling window price change statistics
-    def price_change_stats(symbols = "", windowsize = "1d", type = "full")
+    def price_change_stats(symbols, windowsize, type)
 
     # write average prices to a csv file
     # all ~ 2115
-    def write_avg_prices_to_csv(count = 10)
+    def write_avg_prices_to_csv(count)
 
     # write average prices to a csv file of certain pairs
-    def write_certain_avg_prices_to_csv(symbols = "")
+    def write_certain_avg_prices_to_csv(symbols)
 
 ## Development
 
