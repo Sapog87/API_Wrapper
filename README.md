@@ -20,9 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-binance = APIWrapper::BinanceRawData.new
-
-time = binance.time
+    #symbol = "BTCUSDT"
+    
+    binance = APIWrapper::BinanceRawData.new
 
     # Current average price for a symbol
     def avg_price(symbol)
